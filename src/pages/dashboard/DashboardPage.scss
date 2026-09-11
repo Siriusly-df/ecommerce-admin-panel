@@ -1,24 +1,51 @@
 .dashboard {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
   padding: 24px;
 
   &__title {
-    grid-column: 1 / -1;
-    margin: 0;
+    margin: 0 0 20px;
     font-size: 28px;
     font-weight: 700;
     line-height: 1.2;
     color: #111827;
   }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  &__orders {
+    margin-top: 24px;
+    padding: 24px;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      padding: 12px 0;
+      text-align: left;
+      font-size: 13px;
+      font-weight: 600;
+      color: #6b7280;
+      border-bottom: 1px solid #e5e7eb;
+    }
+  }
+
+  &__orders-title {
+    margin: 0 0 20px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #111827;
+  }
 }
 
 .dashboard-stat {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-
   &__title {
     margin: 0;
     font-size: 16px;
@@ -41,15 +68,73 @@
   }
 }
 
+.dashboard-order {
+  &__id {
+    padding: 16px 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+  }
+
+  &__name {
+    padding: 16px 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: #111827;
+  }
+
+  &__total,
+  &__status {
+    padding: 16px 0;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  &__total {
+    color: #374151;
+  }
+
+  &__status {
+    color: #6b7280;
+  }
+}
+
 @media (max-width: 1100px) {
-  .dashboard {
+  .dashboard__stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 600px) {
   .dashboard {
-    grid-template-columns: 1fr;
     padding: 16px;
+
+    &__stats {
+      grid-template-columns: 1fr;
+    }
+
+    &__orders {
+      padding: 16px;
+
+      table {
+        font-size: 13px;
+      }
+
+      th {
+        font-size: 12px;
+      }
+    }
+
+    &__orders-title {
+      font-size: 18px;
+    }
+  }
+
+  .dashboard-order {
+    &__name,
+    &__total,
+    &__status {
+      padding: 12px 0;
+    }
   }
 }

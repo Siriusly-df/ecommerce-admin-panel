@@ -1,15 +1,18 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "../../widgets/header/Header";
 import { Sidebar } from "../../widgets/sidebar/Sidebar";
+import "./MainLayout.scss"
 
 export function MainLayout(){
     return(
     <>
-     <Sidebar />
-     <Header/>   
-     <main className="main">
+    <Header />
+    <div className="layout">
+        <Sidebar />
+        <main className="main">
         <Outlet />
-     </main>
+        </main>
+    </div>
     </>
     );
 }
