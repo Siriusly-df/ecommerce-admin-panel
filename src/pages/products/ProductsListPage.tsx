@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
-import { products } from "../../entities/product/model/mock";
 import "./ProductsListPage.scss";
+import { getProducts } from "../../entities/product/model/getProducts";
+import type { Product } from "../../entities/product/model/types";
+import { useState } from "react";
 
 
 export function ProductsListPage() {
+  const [productsState, setProductsState] = useState<Product[]>(getProducts())
+
   return (
     <section className="products">
       <h3 className="products__title">Products</h3>
@@ -20,7 +24,7 @@ export function ProductsListPage() {
             </tr>
           </thead>
           <tbody>
-            {products.data.map((product) => (
+            {productsState.map((product) => (
               <tr key={product.id} className="product">
                 <td className="product__id">{product.id}.</td>
                 <td className="product__title">{product.title}</td>

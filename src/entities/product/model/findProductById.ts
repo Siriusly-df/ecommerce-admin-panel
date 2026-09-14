@@ -1,7 +1,7 @@
-import { products } from "./mock"
+import { getProducts } from "./getProducts"
 
 export const findProductById = (productId: number) => {
-  return products.data.find((product) => {
+  return getProducts().find((product) => {
     return product.id === productId
   })
 }

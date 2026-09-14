@@ -3,27 +3,27 @@ import { orders } from "../../entities/order/model/mock";
 import "./DashboardPage.scss"
 
 type DashboardStat = { 
-    id: number;
-    title: string;
-    value: number;
-    icon: string;
+  id: number;
+  title: string;
+  value: number;
+  icon: string;
 }; 
 
 type DashboardStats = DashboardStat[];
 
 interface ApiResponse<T> {
-    data:T;
-    success: boolean;
+  data:T;
+  success: boolean;
 }
 
 const stats: ApiResponse<DashboardStats> = {
-    data:[
-        { id: 1, title: "Products", value: 10, icon: ""},
-        { id: 2, title: "Orders", value: 15, icon: ""},
-        { id: 3, title: "Users", value: 20, icon: "" },
-        { id: 4, title: "Revenue", value: 30, icon: ""},
-    ],
-    success: true
+  data:[
+    { id: 1, title: "Products", value: 10, icon: ""},
+    { id: 2, title: "Orders", value: 15, icon: ""},
+    { id: 3, title: "Users", value: 20, icon: "" },
+    { id: 4, title: "Revenue", value: 30, icon: ""},
+  ],
+  success: true
 }
 
 export function DashboardPage() {
