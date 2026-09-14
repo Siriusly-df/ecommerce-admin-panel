@@ -7,7 +7,6 @@ type ProductEditorProps = {
     onSave: (product: Product) => void;
 };
 
-
 export function ProductEditor({product, onSave }: ProductEditorProps) {
 
     const [title, setTitle] = useState(product.title);
@@ -15,7 +14,6 @@ export function ProductEditor({product, onSave }: ProductEditorProps) {
     const [stock, setStock] = useState(product.stock);
     const [image, setImage] = useState(product.image);
     
-
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
      event.preventDefault();
 
@@ -32,6 +30,7 @@ export function ProductEditor({product, onSave }: ProductEditorProps) {
     return(
     <div className="product-editor">
         <form className="product__form" onSubmit={handleSubmit}>
+        <p className="product__form-text">Title</p>
             <input         
                 className="form__input-title" 
                 type="text" 
@@ -41,6 +40,7 @@ export function ProductEditor({product, onSave }: ProductEditorProps) {
                     setTitle(event.target.value)
                 }}
             />
+        <p className="product__form-text">Price</p>
             <input         
                 className="search-bar__input" 
                 type="number" 
@@ -50,6 +50,7 @@ export function ProductEditor({product, onSave }: ProductEditorProps) {
                     setPrice(Number(event.target.value))
                 }}
             />
+        <p className="product__form-text">Stock</p>
             <input         
                 className="search-bar__input" 
                 type="number" 
@@ -59,6 +60,7 @@ export function ProductEditor({product, onSave }: ProductEditorProps) {
                     setStock(Number(event.target.value))
                 }}
             />
+        <p className="product__form-text">Image</p>
             <input         
                 className="search-bar__input" 
                 type="text" 
@@ -69,7 +71,7 @@ export function ProductEditor({product, onSave }: ProductEditorProps) {
                 }}
             />
             <button         
-                className="product__form__button"
+                className="product__form-btn"
                 aria-label="Editor"
                 type="submit"
             >Save</button>

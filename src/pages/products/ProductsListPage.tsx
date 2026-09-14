@@ -1,17 +1,86 @@
 import { Link } from "react-router-dom";
-import "./ProductsListPage.scss";
 import { getProducts } from "../../entities/product/model/getProducts";
 import type { Product } from "../../entities/product/model/types";
 import { useState } from "react";
-
+import type { FormEvent } from "react";
+import "./ProductsListPage.scss";
 
 export function ProductsListPage() {
   const [productsState, setProductsState] = useState<Product[]>(getProducts())
+  const [isProducts, setIsProducts] = useState<boolean>(false);
+
+  const [title, setTitle] = useState("");
+  const [price, setPrice] = useState(0);
+  const [stock, setStock] = useState(0);
+  const [image, setImage] = useState("");
+
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const productBigId = productsState.map((product) => product.id)
+    const newId = productBigId.length === 0
+      ? 1
+      : Math.max(...productBigId) + 1;
+
+    const addProduct = {
+      id: newId,
+      title, 
+      price, 
+      stock, 
+      image 
+    }
+
+    const updatedProducts = [...productsState, addProduct];
+    setProductsState(updatedProducts)
+
+    const json = JSON.stringify(updatedProducts)
+    localStorage.setItem("products", json)
+  }
+;
+  
 
   return (
     <section className="products">
       <h3 className="products__title">Products</h3>
-
+      <button className="products__add-btn" onClick={() => setIsProducts(true)}>+ Add Product</button>
+      {isProducts && 
+      <form className="products__form"  onSubmit={handleSubmit}>
+        <p className="products__form-text">Title</p>
+        <input 
+          className="products__form-input" 
+          type="text" 
+          placeholder="Title"
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+        />
+        <p className="products__form-text">Price</p>
+        <input 
+          className="products__form-input" 
+          type="number" 
+          placeholder="Price"
+          value={price}
+          onChange={(event) => setPrice(Number((event.target.value)))}
+        />
+        <p className="products__form-text">Stock</p>
+        <input 
+          className="products__form-input" 
+          type="number" 
+          placeholder="Stock"
+          value={stock}
+          onChange={(event) =>  setStock(Number((event.target.value)))}
+        />
+        <p className="products__form-text">Image</p>
+        <input 
+          className="products__form-input" 
+          type="text" 
+          placeholder="Image"
+          value={image}
+          onChange={(event) => setImage(event.target.value)}
+        />
+        <button type="submit">Save</button>
+      </form>
+      }
       <div className="products__list">
         <table>
           <thead>

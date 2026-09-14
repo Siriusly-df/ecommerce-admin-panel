@@ -9,6 +9,82 @@
     color: #111827;
   }
 
+  &__add-btn {
+    margin-bottom: 20px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #111827;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 24px;
+    padding: 24px;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+  }
+
+  &__form-text {
+    margin: 0 0 -8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+  }
+
+  &__form-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    background-color: #ffffff;
+    color: #111827;
+    font-size: 14px;
+    outline: none;
+
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &:focus {
+      border-color: #111827;
+      box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08);
+    }
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+  }
+
+  &__form > button {
+    justify-self: start;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 7px;
+    background-color: #111827;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
   &__list {
     overflow-x: auto;
     padding: 24px;
@@ -27,7 +103,6 @@
       font-size: 13px;
       font-weight: 600;
       color: #6b7280;
-
       border-bottom: 1px solid #e5e7eb;
     }
   }
@@ -39,6 +114,7 @@
   &__price,
   &__stock {
     padding: 16px;
+
     font-size: 14px;
     border-bottom: 1px solid #e5e7eb;
   }
@@ -84,6 +160,10 @@
 
     &__title {
       font-size: 24px;
+    }
+
+    &__form {
+      padding: 16px;
     }
 
     &__list {

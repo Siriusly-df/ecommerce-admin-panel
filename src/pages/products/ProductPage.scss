@@ -3,6 +3,7 @@
 
   &__title {
     margin: 0 0 16px;
+
     font-size: 28px;
     font-weight: 700;
     color: #111827;
@@ -10,6 +11,7 @@
 
   &__id {
     margin: 0 0 16px;
+
     font-size: 28px;
     font-weight: 700;
     color: #111827;
@@ -17,6 +19,7 @@
 
   &__price {
     margin: 0 0 12px;
+
     font-size: 24px;
     font-weight: 600;
     color: #111827;
@@ -24,6 +27,7 @@
 
   &__stock {
     margin: 0 0 24px;
+
     font-size: 15px;
     color: #6b7280;
   }
@@ -31,8 +35,86 @@
   &__image {
     width: 320px;
     height: 320px;
+
     object-fit: contain;
     border-radius: 12px;
+  }
+}
+
+.product-editor {
+  margin-top: 24px;
+
+  .product__form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 20px;
+
+    width: 100%;
+    padding: 24px;
+
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+  }
+
+  .product__form-text {
+    margin: 0;
+
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+  }
+
+  .form__input-title,
+  .search-bar__input {
+    width: 100%;
+    min-width: 0;
+    padding: 10px 12px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+
+    background-color: #ffffff;
+    color: #111827;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &:focus {
+      border-color: #111827;
+      box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08);
+    }
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+  }
+
+  .product__form-btn {
+    grid-column: 1 / -1;
+    justify-self: start;
+
+    padding: 10px 20px;
+
+    border: none;
+    border-radius: 7px;
+
+    background-color: #111827;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.85;
+    }
   }
 }
 
@@ -48,6 +130,17 @@
       width: 100%;
       height: auto;
       max-width: 320px;
+    }
+  }
+
+  .product-editor {
+    .product__form {
+      grid-template-columns: 1fr;
+      padding: 16px;
+    }
+
+    .product__form-btn {
+      grid-column: auto;
     }
   }
 }
