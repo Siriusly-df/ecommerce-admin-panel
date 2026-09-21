@@ -3,7 +3,6 @@
 
   &__title {
     margin: 0 0 16px;
-
     font-size: 28px;
     font-weight: 700;
     color: #111827;
@@ -11,7 +10,6 @@
 
   &__id {
     margin: 0 0 16px;
-
     font-size: 28px;
     font-weight: 700;
     color: #111827;
@@ -19,7 +17,6 @@
 
   &__price {
     margin: 0 0 12px;
-
     font-size: 24px;
     font-weight: 600;
     color: #111827;
@@ -27,7 +24,6 @@
 
   &__stock {
     margin: 0 0 24px;
-
     font-size: 15px;
     color: #6b7280;
   }
@@ -35,7 +31,6 @@
   &__image {
     width: 320px;
     height: 320px;
-
     object-fit: contain;
     border-radius: 12px;
   }
@@ -48,10 +43,8 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px 20px;
-
     width: 100%;
     padding: 24px;
-
     background-color: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 12px;
@@ -70,15 +63,11 @@
     width: 100%;
     min-width: 0;
     padding: 10px 12px;
-
     border: 1px solid #d1d5db;
     border-radius: 7px;
-
     background-color: #ffffff;
     color: #111827;
-
     font-size: 14px;
-
     outline: none;
 
     transition:
@@ -98,18 +87,13 @@
   .product__form-btn {
     grid-column: 1 / -1;
     justify-self: start;
-
     padding: 10px 20px;
-
     border: none;
     border-radius: 7px;
-
     background-color: #111827;
     color: #ffffff;
-
     font-size: 14px;
     font-weight: 600;
-
     transition: opacity 0.2s ease;
 
     &:hover {

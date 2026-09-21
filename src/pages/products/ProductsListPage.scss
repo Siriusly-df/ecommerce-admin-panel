@@ -24,6 +24,40 @@
       opacity: 0.85;
     }
   }
+  
+  &__toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+
+  &__input-search {
+    width: 320px;
+    max-width: 100%;
+    margin-bottom: 20px;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    background-color: #ffffff;
+    color: #111827;
+    font-size: 14px;
+    outline: none;
+
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &:focus {
+      border-color: #111827;
+      box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08);
+    }
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+  }
 
   &__form {
     display: flex;

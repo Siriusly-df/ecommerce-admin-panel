@@ -35,11 +35,6 @@ export function DashboardPage() {
         <Card key={stat.id}>
             <h4 className="dashboard-stat__title">{stat.title}</h4>
             <p className="dashboard-stat__value">{stat.value}</p>
-            <img
-              className="dashboard-stat__icon"
-              src={stat.icon}
-              alt={stat.title}
-            />
         </Card>
       ))}
       </div>

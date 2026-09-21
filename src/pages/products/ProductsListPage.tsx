@@ -1,18 +1,23 @@
 import { Link } from "react-router-dom";
 import { getProducts } from "../../entities/product/model/getProducts";
 import type { Product } from "../../entities/product/model/types";
-import { useState } from "react";
+import type { StockFilter } from "../../entities/product/model/stockFilter";
+import { StockFilterSelect } from "../../shared/ui/stock-filter/StockFilter";
 import type { FormEvent } from "react";
+import { useEffect, useState } from "react";
 import "./ProductsListPage.scss";
 
 export function ProductsListPage() {
-  const [productsState, setProductsState] = useState<Product[]>(getProducts())
+  const [productsState, setProductsState] = useState<Product[]>(getProducts());
   const [isProducts, setIsProducts] = useState<boolean>(false);
-
+  const [stockFilter, setStockFilter] = useState<StockFilter>("all");
+  
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState(0);
   const [stock, setStock] = useState(0);
   const [image, setImage] = useState("");
+  const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
 
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -36,14 +41,37 @@ export function ProductsListPage() {
 
     const json = JSON.stringify(updatedProducts)
     localStorage.setItem("products", json)
-  }
-;
-  
+  };
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 2000);
+   return () => clearTimeout(delayDebounceFn);
+  },[search]) 
+
+  const filteredProducts = productsState.filter((product) => {
+    const searchMatches = product.title
+      .toLowerCase()
+      .includes(debouncedSearch.toLowerCase())
+    const stockMatches = 
+      stockFilter === "all" 
+        ? true
+       : stockFilter === "in-stock"
+        ? product.stock > 0
+        : product.stock === 0
+
+    return searchMatches && stockMatches;
+  });
 
   return (
     <section className="products">
       <h3 className="products__title">Products</h3>
-      <button className="products__add-btn" onClick={() => setIsProducts(true)}>+ Add Product</button>
+      <button 
+        className="products__add-btn" 
+        onClick={() => setIsProducts(!isProducts)}>
+        {isProducts ? "- Hide Form" : "+ Add Product"}
+      </button>
       {isProducts && 
       <form className="products__form"  onSubmit={handleSubmit}>
         <p className="products__form-text">Title</p>
@@ -81,6 +109,19 @@ export function ProductsListPage() {
         <button type="submit">Save</button>
       </form>
       }
+      <div className="products__toolbar">
+        <input 
+          className="products__input-search"
+          type="text"
+          placeholder="Search product"
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+        />
+        <StockFilterSelect 
+          stockFilter={stockFilter}
+          setStockFilter={setStockFilter}
+        />
+      </div>
       <div className="products__list">
         <table>
           <thead>
@@ -93,7 +134,7 @@ export function ProductsListPage() {
             </tr>
           </thead>
           <tbody>
-            {productsState.map((product) => (
+            {filteredProducts.map((product) => (
               <tr key={product.id} className="product">
                 <td className="product__id">{product.id}.</td>
                 <td className="product__title">{product.title}</td>
